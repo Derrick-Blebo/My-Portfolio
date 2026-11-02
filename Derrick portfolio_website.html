@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Derrick Blebo | Brand & Marketing Executive</title>
+    
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        // 60-30-10 Rule Implementation
+                        // 60% Background (Neutral/Architectural)
+                        bgPrimary: '#f8fafc', // slate-50
+                        bgSecondary: '#ffffff', // white
+                        // 30% Text (Dark Contrast)
+                        textPrimary: '#0f172a', // slate-900
+                        textSecondary: '#475569', // slate-600
+                        // 10% Accent (Deep Crimson Red)
+                        accent: '#b91c1c', // red-700
+                        accentHover: '#991b1b', // red-800
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles for extra finesse */
+        body {
+            background-color: theme('colors.bgPrimary');
+            color: theme('colors.textPrimary');
+        }
+        
+        .thin-headline {
+            font-weight: 100;
+            letter-spacing: -0.05em;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Architectural Grid Background Overlay */
+        .bg-grid {
+            background-image: 
+                linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        .glass-nav {
+            background: rgba(248, 250, 252, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-accent selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold tracking-tighter uppercase text-textPrimary">
+                Derrick<span class="text-accent font-light">Blebo.</span>
+            </a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-textSecondary">
+                <a href="#about" class="hover:text-accent transition-colors duration-300">About</a>
+                <a href="#achievements" class="hover:text-accent transition-colors duration-300">Achievements</a>
+                <a href="#portfolio" class="hover:text-accent transition-colors duration-300">Portfolio</a>
+                <a href="#brands" class="hover:text-accent transition-colors duration-300">Brands</a>
+                <a href="#skills" class="hover:text-accent transition-colors duration-300">Skills</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="https://www.linkedin.com/in/derrick-blebo-2b0640134/" target="_blank" rel="noopener noreferrer" class="text-textSecondary hover:text-accent transition-all duration-300 hover:scale-110" aria-label="LinkedIn">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="#contact" class="hidden md:inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-sm font-medium rounded-full text-white bg-accent hover:bg-accentHover transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5">
+                    Contact Me
+                </a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-textPrimary p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden bg-bgPrimary border-b border-gray-200 px-6 py-4 md:hidden flex-col space-y-4 shadow-lg">
+            <a href="#about" class="block text-textSecondary hover:text-accent font-medium">About</a>
+            <a href="#achievements" class="block text-textSecondary hover:text-accent font-medium">Achievements</a>
+            <a href="#portfolio" class="block text-textSecondary hover:text-accent font-medium">Portfolio</a>
+            <a href="#brands" class="block text-textSecondary hover:text-accent font-medium">Brands</a>
+            <a href="#skills" class="block text-textSecondary hover:text-accent font-medium">Skills</a>
+            <a href="https://www.linkedin.com/in/derrick-blebo-2b0640134/" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 text-textSecondary hover:text-accent font-medium">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" /></svg>
+                <span>LinkedIn</span>
+            </a>
+            <a href="#contact" class="inline-block px-5 py-2.5 bg-accent text-white font-medium rounded-full text-center mt-2">Contact Me</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-accent text-white">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="max-w-4xl fade-in-up">
+                <p class="text-white/80 font-medium tracking-widest uppercase text-sm mb-6 inline-block py-1 border-b border-white/50">Portfolio 2026</p>
+                <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[1.1] mb-8">
+                    <span class="thin-headline block">I design brilliant</span>
+                    <span class="font-normal block">campaigns and <span class="italic font-light">brand</span> identity.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-white/90 font-light max-w-2xl mb-10 leading-relaxed delay-100 fade-in-up">
+                    Brand & Marketing Executive <span class="text-white/50 px-2">|</span> Creative Director <span class="text-white/50 px-2">|</span> Designer
+                </p>
+                <div class="flex flex-wrap gap-4 delay-200 fade-in-up">
+                    <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-full text-accent bg-white hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1 hover:scale-105 group">
+                        Start a Project
+                        <svg class="ml-2 -mr-1 w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                    <a href="#achievements" class="inline-flex items-center justify-center px-8 py-4 border border-white/30 text-base font-medium rounded-full text-white bg-transparent hover:bg-white/20 hover:border-white/50 transition-all duration-300 hover:-translate-y-1 hover:scale-105">
+                        View Achievements
+                    </a>
+                    <a href="https://www.linkedin.com/in/derrick-blebo-2b0640134/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center p-4 border border-white/30 text-white rounded-full bg-transparent hover:bg-white/20 hover:border-white/50 transition-all duration-300 hover:-translate-y-1 hover:scale-110" aria-label="LinkedIn Profile">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" /></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Decorative Architectural Element -->
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-2/3 bg-white/5 shadow-2xl rounded-l-3xl border-l border-y border-white/10 hidden lg:block -z-10 transform translate-x-12 opacity-50"></div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-bgSecondary border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-start">
+                <div class="lg:col-span-4 lg:sticky lg:top-32">
+                    <h2 class="text-3xl md:text-5xl font-thin text-textPrimary mb-4">My<br/><span class="font-bold">Story.</span></h2>
+                    <div class="w-12 h-1 bg-accent mb-6"></div>
+                </div>
+                <div class="lg:col-span-8">
+                    <div class="text-lg text-textSecondary font-light leading-relaxed space-y-6">
+                        <p>I learned architecture before I learned design. It started at the University of Ghana, analyzing political systems and organizing information structures. Systems only work when every element serves a precise purpose. My job was to find the logic before crafting the visual.</p>
+                        
+                        <p>Now at EV Afriq, I lead integrated marketing and lead-generation architecture to drive the regional shift toward electric mobility. From campaign strategy to full visual identity across real estate, construction, and corporate sectors, the goal remains unchanged: build systems that scale brands, engage markets, and last. Multiple roles. One constant principle: decode the system. Then design the authority.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Achievements Section -->
+    <section id="achievements" class="py-24 bg-bgPrimary">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="mb-16">
+                <h2 class="text-3xl md:text-5xl font-thin mb-4 tracking-tight text-textPrimary">Key <br/><span class="font-bold">Achievements.</span></h2>
+                <div class="w-12 h-1 bg-accent mb-6"></div>
+            </div>
+            
+            <div class="flex flex-col">
+                <!-- Achievement 1 -->
+                <div class="border-t border-gray-200 py-10 grid grid-cols-1 md:grid-cols-12 gap-6 hover:-translate-y-1 hover:shadow-lg hover:bg-white transition-all duration-300 rounded-2xl px-6 -mx-6">
+                    <div class="md:col-span-4">
+                        <h3 class="text-2xl font-bold text-textPrimary">Shell Ghana</h3>
+                        <p class="text-[#2563eb] text-sm mt-1 font-medium tracking-wide">Brand Turnaround</p>
+                    </div>
+                    <div class="md:col-span-8">
+                        <p class="text-gray-500 font-light text-lg leading-relaxed">Rescued the account from client termination risk, restoring it to its strongest performance rating in a decade over a two-year turnaround.</p>
+                    </div>
+                </div>
+
+                <!-- Achievement 2 -->
+                <div class="border-t border-gray-200 py-10 grid grid-cols-1 md:grid-cols-12 gap-6 hover:-translate-y-1 hover:shadow-lg hover:bg-white transition-all duration-300 rounded-2xl px-6 -mx-6">
+                    <div class="md:col-span-4">
+                        <h3 class="text-2xl font-bold text-textPrimary">Telecel Ghana</h3>
+                        <p class="text-[#2563eb] text-sm mt-1 font-medium tracking-wide">Visual Rebranding</p>
+                    </div>
+                    <div class="md:col-span-8">
+                        <p class="text-gray-500 font-light text-lg leading-relaxed">Led the visual rebranding across digital channels during the Vodafone Ghana-to-Telecel transition, including the creation of the official Telecel Cash logo.</p>
+                    </div>
+                </div>
+
+                <!-- Achievement 3 -->
+                <div class="border-t border-gray-200 py-10 grid grid-cols-1 md:grid-cols-12 gap-6 hover:-translate-y-1 hover:shadow-lg hover:bg-white transition-all duration-300 rounded-2xl px-6 -mx-6">
+                    <div class="md:col-span-4">
+                        <h3 class="text-2xl font-bold text-textPrimary">EV Afriq</h3>
+                        <p class="text-[#2563eb] text-sm mt-1 font-medium tracking-wide">Marketing Manager</p>
+                    </div>
+                    <div class="md:col-span-8">
+                        <p class="text-gray-500 font-light text-lg leading-relaxed">Designed lead-nurturing frameworks, orchestrated high-profile brand activations, and positioned the brand as a regional leader in the electric vehicle transition.</p>
+                    </div>
+                </div>
+
+                <!-- Achievement 4 -->
+                <div class="border-t border-gray-200 py-10 grid grid-cols-1 md:grid-cols-12 gap-6 hover:-translate-y-1 hover:shadow-lg hover:bg-white transition-all duration-300 rounded-2xl px-6 -mx-6">
+                    <div class="md:col-span-4">
+                        <h3 class="text-2xl font-bold text-textPrimary">Above the Noise</h3>
+                        <p class="text-[#2563eb] text-sm mt-1 font-medium tracking-wide">Brand Identity</p>
+                    </div>
+                    <div class="md:col-span-8">
+                        <p class="text-gray-500 font-light text-lg leading-relaxed">Designed the complete brand identity for the European Union-affiliated podcast, establishing a cohesive visual system for international audiences.</p>
+                    </div>
+                </div>
+
+                <!-- Achievement 5 -->
+                <div class="border-t border-b border-gray-200 py-10 grid grid-cols-1 md:grid-cols-12 gap-6 hover:-translate-y-1 hover:shadow-lg hover:bg-white transition-all duration-300 rounded-2xl px-6 -mx-6">
+                    <div class="md:col-span-4">
+                        <h3 class="text-2xl font-bold text-textPrimary">Edwadzi</h3>
+                        <p class="text-[#2563eb] text-sm mt-1 font-medium tracking-wide">Launch Campaign</p>
+                    </div>
+                    <div class="md:col-span-8">
+                        <p class="text-gray-500 font-light text-lg leading-relaxed">Designed and implemented the marketing strategy and launch campaign, successfully driving 500 platform sign-ups within the first month.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notable Brands Worked With -->
+    <section id="brands" class="py-24 bg-bgSecondary border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-xl md:text-2xl font-light text-textSecondary mb-12 tracking-widest uppercase">Notable Brands Worked With</h2>
+            
+            <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+                <!-- Brand Tags -->
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    Shell
+                </div>
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    Telecel
+                </div>
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    JAC Motors
+                </div>
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    Renault
+                </div>
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    Edwadzi
+                </div>
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    Crabbe Crabbe & Co.
+                </div>
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    Above the Noise
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Achievements Section 
+    <section id="achievements" class="py-24 bg-accent text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-thin mb-4 tracking-tight">Key <span class="font-bold">Achievements.</span></h2>
+                <p class="text-white/80 font-light max-w-2xl mx-auto text-lg">Delivering high-impact brand solutions and measurable commercial growth.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Achievement 1 
+                <div class="group bg-white/10 p-10 rounded-3xl border border-white/20 hover:bg-white/20 backdrop-blur-sm transition-all duration-300">
+                    <h3 class="text-2xl font-bold mb-3">Shell Ghana</h3>
+                    <p class="text-white/90 font-light leading-relaxed">Rescued the account from client termination risk, restoring it to its strongest performance rating in a decade over a two-year turnaround.</p>
+                </div>
+                
+                <!-- Achievement 2 
+                <div class="group bg-white/10 p-10 rounded-3xl border border-white/20 hover:bg-white/20 backdrop-blur-sm transition-all duration-300">
+                    <h3 class="text-2xl font-bold mb-3">Telecel Ghana</h3>
+                    <p class="text-white/90 font-light leading-relaxed">Led the digital visual rebranding across social media during the Vodafone transition, including the creation of the official Telecel Cash logo.</p>
+                </div>
+
+                <!-- Achievement 3 
+                <div class="group bg-white/10 p-10 rounded-3xl border border-white/20 hover:bg-white/20 backdrop-blur-sm transition-all duration-300">
+                    <h3 class="text-2xl font-bold mb-3">JAC Motors</h3>
+                    <p class="text-white/90 font-light leading-relaxed">Executed influencer-led brand campaigns resulting in a 500% increase in year-over-year sales and a 300% surge in social media engagement.</p>
+                </div>
+
+                <!-- Achievement 4 
+                <div class="group bg-white/10 p-10 rounded-3xl border border-white/20 hover:bg-white/20 backdrop-blur-sm transition-all duration-300">
+                    <h3 class="text-2xl font-bold mb-3">Crabbe, Crabbe & Co. & Edwadzi</h3>
+                    <p class="text-white/90 font-light leading-relaxed">Executed under SoundSpace PR, delivered a 60% increase in premise identification through environmental design for Crabbe, and drove 500 platform sign-ups in 30 days for Edwadzi.</p>
+                </div>
+            </div>
+        </div> -->
+    </section>
+
+    <!-- Design and Video Works Section -->
+    <section id="portfolio" class="py-24 bg-bgPrimary bg-grid">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-thin mb-4 tracking-tight text-textPrimary">Design & <span class="font-bold text-accent">Video Works.</span></h2>
+                <div class="w-12 h-1 bg-accent mx-auto mb-6"></div>
+                <p class="text-textSecondary font-light text-lg">A curated selection of visual identities, campaigns, and multimedia projects.</p>
+            </div>
+            
+            <div class="w-full max-w-5xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 h-[600px] md:h-[800px] relative">
+                <iframe src="https://drive.google.com/file/d/1NKSU8lcZURT_xzxT7OA134q21ci8OD3_/preview" width="100%" height="100%" allow="autoplay" class="border-0 absolute inset-0"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notable Brands Worked With -->
+    <section id="brands" class="py-24 bg-bgSecondary border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-xl md:text-2xl font-light text-textSecondary mb-12 tracking-widest uppercase">Notable Brands Worked With</h2>
+            
+            <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+                <!-- Brand Tags -->
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    Telecel
+                </div>
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    Shell
+                </div>
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    Renault
+                </div>
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    JAC Motors
+                </div>
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    Captain Morgan
+                </div>
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    Unilever
+                </div>
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    Geisha
+                </div>
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    Gordon's
+                </div>
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    EU Above The Noise
+                </div>
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    TipMe
+                </div>
+                <div class="px-8 py-4 bg-bgPrimary border border-gray-200 rounded-full text-textPrimary font-semibold text-lg hover:border-accent hover:text-accent hover:shadow-md transition-all duration-300 cursor-default">
+                    HD+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-bgPrimary bg-grid">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-thin text-textPrimary mb-6">Core <br/><span class="font-bold text-accent">Competencies.</span></h2>
+                    <p class="text-textSecondary font-light text-lg mb-8 leading-relaxed">
+                        A robust blend of analytical marketing strategy and high-end creative execution, ensuring campaigns not only look brilliant but drive measurable commercial growth.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="flex items-center space-x-4 bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-accent transition-colors">
+                        <div class="w-2 h-2 rounded-full bg-accent"></div>
+                        <span class="font-medium text-textPrimary">Brand Strategy & Identity Development</span>
+                    </div>
+                    <div class="flex items-center space-x-4 bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-accent transition-colors">
+                        <div class="w-2 h-2 rounded-full bg-accent"></div>
+                        <span class="font-medium text-textPrimary">Social Media Marketing & Paid Campaigns</span>
+                    </div>
+                    <div class="flex items-center space-x-4 bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-accent transition-colors">
+                        <div class="w-2 h-2 rounded-full bg-accent"></div>
+                        <span class="font-medium text-textPrimary">multi-channel marketing</span>
+                    </div>
+                    <div class="flex items-center space-x-4 bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-accent transition-colors">
+                        <div class="w-2 h-2 rounded-full bg-accent"></div>
+                        <span class="font-medium text-textPrimary">Team Leadership & Mentoring</span>
+                    </div>
+                    <div class="flex items-center space-x-4 bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-accent transition-colors">
+                        <div class="w-2 h-2 rounded-full bg-accent"></div>
+                        <span class="font-medium text-textPrimary">Community Management</span>
+                    </div>
+                    <div class="flex items-center space-x-4 bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-accent transition-colors">
+                        <div class="w-2 h-2 rounded-full bg-accent"></div>
+                        <span class="font-medium text-textPrimary">Graphic Design & Video Production</span>
+                    </div>
+                    <div class="flex items-center space-x-4 bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-accent transition-colors">
+                        <div class="w-2 h-2 rounded-full bg-accent"></div>
+                        <span class="font-medium text-textPrimary">Content writing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact Section -->
+    <footer id="contact" class="bg-textPrimary text-white pt-20 pb-8 relative overflow-hidden">
+        <!-- Abstract background shape -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-accent opacity-20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 border-b border-gray-800 pb-12">
+                <!-- Column 1: Identity -->
+                <div>
+                    <h2 class="text-3xl font-thin mb-4 tracking-tight">Derrick<br/><span class="font-bold text-accent">Blebo.</span></h2>
+                    <p class="text-gray-400 font-light text-xs max-w-xs leading-relaxed">Brand & Marketing Executive bringing architectural precision to high-impact marketing systems.</p>
+                </div>
+                
+                <!-- Column 2: Quick Links -->
+                <div>
+                    <h3 class="text-sm font-medium mb-6 uppercase tracking-wider text-gray-300">Quick Links</h3>
+                    <ul class="space-y-3 text-xs font-light">
+                        <li><a href="#about" class="text-gray-400 hover:text-accent transition-colors duration-300">My Story</a></li>
+                        <li><a href="#achievements" class="text-gray-400 hover:text-accent transition-colors duration-300">Achievements</a></li>
+                        <li><a href="#brands" class="text-gray-400 hover:text-accent transition-colors duration-300">Brands</a></li>
+                        <li><a href="#skills" class="text-gray-400 hover:text-accent transition-colors duration-300">Core Competencies</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3: Contact Info -->
+                <div>
+                    <h3 class="text-sm font-medium mb-6 uppercase tracking-wider text-gray-300">Contact Info</h3>
+                    <div class="flex flex-col space-y-4 text-xs font-light text-gray-400">
+                        <a href="mailto:derrickblebo@gmail.com" class="flex items-center space-x-3 hover:text-accent transition-colors duration-300">
+                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <span>derrickblebo@gmail.com</span>
+                        </a>
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <span>+233 55 128 2588</span>
+                        </div>
+                        <a href="https://www.linkedin.com/in/derrick-blebo-2b0640134/" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 hover:text-accent transition-colors duration-300">
+                            <svg class="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" /></svg>
+                            <span>LinkedIn Profile</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-500 font-light uppercase tracking-wider">
+                <p>&copy; 2026 Derrick Quaynortey Blebo. All Rights Reserved.</p>
+                <p class="mt-4 md:mt-0">Designed with precision.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Widget -->
+    <a href="https://wa.me/+233551282588" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#128C7E] text-white p-4 rounded-full shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center" aria-label="Chat on WhatsApp">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+    </a>
+
+    <!-- Interactive Script -->
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+    </script>
+</body>
+</html>
