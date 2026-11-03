@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        // 60-30-10 Rule Implementation
+                        // 60% Background (Neutral/Architectural)
+                        bgPrimary: '#f8fafc', // slate-50
+                        bgSecondary: '#ffffff', // white
+                        // 30% Text (Dark Contrast)
+                        textPrimary: '#0f172a', // slate-900
+                        textSecondary: '#475569', // slate-600
+                        // 10% Accent (Deep Crimson Red)
+                        accent: '#b91c1c', // red-700
+                        accentHover: '#991b1b', // red-800
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles for extra finesse */
+        body {
+            background-color: theme('colors.bgPrimary');
+            color: theme('colors.textPrimary');
+        }
+        
+        .thin-headline {
+            font-weight: 100;
+            letter-spacing: -0.05em;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Architectural Grid Background Overlay */
+        .bg-grid {
+            background-image: 
+                linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        .glass-nav {
+            background: rgba(248, 250, 252, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+    </style>
+    
+    
+</head>
+<body>
+     <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold tracking-tighter uppercase text-textPrimary">
+                Derrick<span class="text-accent font-light">Blebo.</span>
+            </a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-textSecondary">
+                <a href="index.html#about" class="hover:text-accent transition-colors duration-300">About</a>
+                <a href="index.html#achievements" class="hover:text-accent transition-colors duration-300">Achievements</a>
+                <a href="index.html#portfolio" class="hover:text-accent transition-colors duration-300">Portfolio</a>
+                <a href="index.html#brands" class="hover:text-accent transition-colors duration-300">Brands</a>
+                <a href="index.html#skills" class="hover:text-accent transition-colors duration-300">Skills</a>
+                <a href="blog.html" class="hover:text-accent transition-colors duration-300">Blog</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="https://www.linkedin.com/in/derrick-blebo-2b0640134/" target="_blank" rel="noopener noreferrer" class="text-textSecondary hover:text-accent transition-all duration-300 hover:scale-110" aria-label="LinkedIn">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="#contact" class="hidden md:inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-sm font-medium rounded-full text-white bg-accent hover:bg-accentHover transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5">
+                    Contact Me
+                </a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-textPrimary p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden bg-bgPrimary border-b border-gray-200 px-6 py-4 md:hidden flex-col space-y-4 shadow-lg">
+            <a href="#about" class="block text-textSecondary hover:text-accent font-medium">About</a>
+            <a href="#achievements" class="block text-textSecondary hover:text-accent font-medium">Achievements</a>
+            <a href="#portfolio" class="block text-textSecondary hover:text-accent font-medium">Portfolio</a>
+            <a href="#brands" class="block text-textSecondary hover:text-accent font-medium">Brands</a>
+            <a href="#skills" class="block text-textSecondary hover:text-accent font-medium">Skills</a>
+            <a href="blog.html" class="block text-textSecondary hover:text-accent font-medium">Blog</a>
+            <a href="https://www.linkedin.com/in/derrick-blebo-2b0640134/" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 text-textSecondary hover:text-accent font-medium">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" /></svg>
+                <span>LinkedIn</span>
+            </a>
+            <a href="#contact" class="inline-block px-5 py-2.5 bg-accent text-white font-medium rounded-full text-center mt-2">Contact Me</a>
+        </div>
+    </nav>
+    <!-- This is the container where the Javascript will inject the post data -->
+    <article id="blog-post-container" class="pt-32 max-w-4xl mx-auto">
+        <h1 id="post-title" class="post-title">Loading post...</h1>
+        <p id="post-date" class="post-date"></p>
+        <div id="post-content" class="post-content"></div>
+    </article>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get('id');
+
+      if (postId) {
+        fetch('posts.json')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(posts => {
+            const post = posts.find(p => p.id == postId);
+
+            if (post) {
+              document.getElementById('post-title').innerText = post.title;
+              document.getElementById('post-date').innerText = post.date;
+              document.getElementById('post-content').innerText = post.content;
+              document.title = post.title;
+            } else {
+              document.getElementById('post-title').innerText = "Post not found";
+              document.getElementById('post-content').innerText = "Sorry, the post you are looking for does not exist.";
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching posts:', error);
+            document.getElementById('post-title').innerText = "Error loading post";
+          });
+      } else {
+        document.getElementById('post-title').innerText = "No post specified";
+      }
+    </script>
+</body>
+</html>
