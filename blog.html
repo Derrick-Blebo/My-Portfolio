@@ -210,35 +210,32 @@
 </body>
 </html>
 <script>
-  // 1. Define your Sanity details
   const PROJECT_ID = 'rulqr25z';
   const DATASET = 'production';
   
-  // 2. Write the query to get all posts, sorted by newest first
   const query = encodeURIComponent('*[_type == "post"] | order(publishedAt desc) { _id, title, publishedAt }');
-  
-  // 3. Build the API URL
   const url = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${query}`;
 
-  // 4. Fetch the live data from Sanity
   fetch(url)
     .then(response => response.json())
     .then(data => {
         const posts = data.result;
         const container = document.querySelector('.grid');
-        container.innerHTML = ''; // Clear out the static placeholders
+        if (!container) return;
+        container.innerHTML = ''; 
         
         posts.forEach(post => {
-            // Format the date nicely (e.g., "Nov 3, 2026")
             const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
             const formattedDate = post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', dateOptions) : 'Recent';
             
             const article = `
-                <a href="post.html?id=${post._id}" class="bg-bgPrimary rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group block">
-                    <span class="text-accent text-xs font-bold uppercase tracking-wider mb-4 block">Article</span>
-                    <h2 class="text-2xl font-bold text-textPrimary mb-4 group-hover:text-accent transition-colors duration-300">${post.title}</h2>
-                    <p class="text-textSecondary font-light mb-6 line-clamp-3">Click to read this post...</p>
-                    <div class="flex items-center justify-between text-sm font-medium text-textSecondary">
+                <a href="post.html?id=${post._id}" class="bg-bgPrimary rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <span class="text-accent text-xs font-bold uppercase tracking-wider mb-4 block">Article</span>
+                        <h2 class="text-2xl font-bold text-textPrimary mb-4 group-hover:text-accent transition-colors duration-300">${post.title}</h2>
+                        <p class="text-textSecondary font-light mb-6 line-clamp-3">Click to read this post...</p>
+                    </div>
+                    <div class="flex items-center justify-between text-sm font-medium text-textSecondary pt-4 border-t border-gray-100/50">
                         <span>${formattedDate}</span>
                         <span class="flex items-center text-accent group-hover:translate-x-2 transition-transform duration-300">
                             Read More <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
