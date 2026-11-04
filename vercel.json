@@ -1,14 +1,14 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "admin.derrickblebo.com"
         }
       ],
-      "destination": "/admin/$1"
+      "destination": "/admin/index.html"
     }
   ]
 }
