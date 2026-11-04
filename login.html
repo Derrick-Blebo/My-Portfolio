@@ -45,25 +45,48 @@
     </div>
 
     <script>
-        const SUPABASE_URL = 'https://wwawzrwxxsjdqbsqvagw.supabase.co';
-        const SUPABASE_ANON_KEY = 'sb_publishable_JA5a5hh28iloEh3x4v8okg_mCgkR91m';
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Isolated scope prevents variable collisions with browser extensions or other scripts
+        (function() {
+            const SUPABASE_URL = 'https://wwawzrwxxsjdqbsqvagw.supabase.co';
+            const SUPABASE_ANON_KEY = 'sb_publishable_JA5a5hh28iloEh3x4v8okg_mCgkR91m';
+            const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        document.getElementById('login-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const errorEl = document.getElementById('error-msg');
+            document.getElementById('login-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const emailInput = document.getElementById('email').value.trim();
+                const passwordInput = document.getElementById('password').value;
+                const errorEl = document.getElementById('error-msg');
+                
+                errorEl.classList.add('hidden');
+                errorEl.innerText = '';
 
-            const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+                try {
+                    const { data, error } = await sb.auth.signInWithPassword({
+                        email: emailInput,
+                        password: passwordInput
+                    });
 
-            if (error) {
-                errorEl.innerText = error.message;
-                errorEl.classList.remove('hidden');
-            } else {
-                window.location.href = 'admin.html';
-            }
-        });
+                    if (error) {
+                        console.error("Login failed:", error.message);
+                        errorEl.innerText = "Error: " + error.message;
+                        errorEl.classList.remove('hidden');
+                        return;
+                    }
+
+                    if (data && data.session) {
+                        window.location.href = 'admin.html';
+                    } else {
+                        errorEl.innerText = "Login failed: No session returned.";
+                        errorEl.classList.remove('hidden');
+                    }
+                } catch (err) {
+                    console.error("Unexpected error during login:", err);
+                    errorEl.innerText = "Unexpected error: " + err.message;
+                    errorEl.classList.remove('hidden');
+                }
+            });
+        })();
     </script>
 </body>
 </html>

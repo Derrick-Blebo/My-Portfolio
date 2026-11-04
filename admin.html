@@ -88,14 +88,16 @@
         </div>
     </div>
 
-    <script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    (function() {
         const SUPABASE_URL = 'https://wwawzrwxxsjdqbsqvagw.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_JA5a5hh28iloEh3x4v8okg_mCgkR91m';
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         // Security Check: Redirect to login if not signed in
         async function checkAuth() {
-            const { data: { session } } = await supabase.auth.getSession();
+            const { data: { session } } = await sb.auth.getSession();
             if (!session) {
                 window.location.href = 'login.html';
             } else {
@@ -105,7 +107,11 @@
         checkAuth();
 
         document.getElementById('logout-btn').addEventListener('click', async () => {
-            await supabase.auth.signOut();
+            try {
+                await sb.auth.signOut();
+            } catch (err) {
+                console.error("Sign out error:", err);
+            }
             window.location.href = 'login.html';
         });
 
@@ -113,7 +119,7 @@
         let allPosts = [];
 
         async function fetchPosts() {
-            const { data, error } = await supabase.from('posts').select('*').order('date', { ascending: false });
+            const { data, error } = await sb.from('posts').select('*').order('date', { ascending: false });
             if (error) {
                 console.error('Error fetching posts:', error);
                 return;
@@ -167,7 +173,7 @@
                 body: rawBody
             };
 
-            const { error } = await supabase.from('posts').upsert([postData]);
+            const { error } = await sb.from('posts').upsert([postData]);
 
             if (error) {
                 alert('Error saving post: ' + error.message);
@@ -206,7 +212,7 @@
 
         window.deletePost = async function(id) {
             if (confirm('Are you sure you want to delete this article?')) {
-                const { error } = await supabase.from('posts').delete().eq('id', id);
+                const { error } = await sb.from('posts').delete().eq('id', id);
                 if (error) {
                     alert('Error deleting post: ' + error.message);
                 } else {
@@ -214,6 +220,7 @@
                 }
             }
         };
-    </script>
+    })();
+</script>
 </body>
 </html>
