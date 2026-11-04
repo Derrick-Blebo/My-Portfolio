@@ -2,10 +2,12 @@
   "routes": [
     {
       "src": "/login",
+      "headers": { "host": "admin.derrickblebo.com" },
       "dest": "/login.html"
     },
     {
       "src": "/login.html",
+      "headers": { "host": "admin.derrickblebo.com" },
       "dest": "/login.html"
     },
     {
