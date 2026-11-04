@@ -28,7 +28,7 @@
         }
     </script>
     <style>
-        body { background-color: theme('colors.bgPrimary'); color: theme('colors.textPrimary'); }
+        body { background-color: #f8fafc; color: #0f172a; }
         .glass-nav { background: rgba(248, 250, 252, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
         .minimal-input {
             border: none;
@@ -37,7 +37,7 @@
             border-radius: 0;
             padding: 12px 0;
             color: #ffffff;
-            transition: border-color 0.3s;
+            width: 100%;
         }
         .minimal-input:focus {
             outline: none;
@@ -77,4 +77,17 @@
     </nav>
 
     <!-- Contact Layout Section -->
-    <main class="pt
+    <main class="pt-40 pb-24 max-w-7xl mx-auto px-6">
+        
+        <!-- Header Text -->
+        <div class="mb-16 max-w-2xl">
+            <h1 class="text-4xl md:text-5xl font-thin mb-4 tracking-tight text-textPrimary">Let's build something <span class="font-bold text-accent">exceptional.</span></h1>
+            <p class="text-textSecondary font-light text-base">Fill out the details below to initiate a brand strategy session or engagement.</p>
+        </div>
+
+        <!-- Red Card Container -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start bg-accent text-white p-8 md:p-12 rounded-3xl shadow-2xl">
+            
+            <!-- Left Side: Form -->
+            <div class="lg:col-span-7">
+                <form id="contact-form" action="https://formspree.io/f/moeeylyg" method="POST" class="space-y-8">
