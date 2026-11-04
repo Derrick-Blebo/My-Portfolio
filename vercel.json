@@ -1,8 +1,14 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/",
-      "destination": "/admin.html"
+      "src": "/",
+      "headers": { "host": "admin.derrickblebo.com" },
+      "dest": "/admin.html"
+    },
+    {
+      "src": "/(.*)",
+      "headers": { "host": "admin.derrickblebo.com" },
+      "dest": "/admin.html"
     }
   ]
 }
