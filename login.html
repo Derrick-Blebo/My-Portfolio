@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Derrick Blebo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'] },
+                    colors: {
+                        bgPrimary: '#f8fafc',
+                        bgSecondary: '#ffffff',
+                        textPrimary: '#0f172a',
+                        textSecondary: '#475569',
+                        accent: '#b91c1c',
+                        accentHover: '#991b1b',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-bgPrimary text-textPrimary font-sans min-h-screen flex items-center justify-center px-6">
+    <div class="max-w-md w-full bg-bgSecondary p-8 rounded-2xl border border-gray-100 shadow-sm">
+        <h1 class="text-2xl font-bold mb-2">Admin Access</h1>
+        <p class="text-xs text-textSecondary mb-6">Log in to manage your blog from any device.</p>
+        
+        <form id="login-form" class="space-y-4">
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-textSecondary mb-2">Email</label>
+                <input type="email" id="email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-accent text-sm">
+            </div>
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-textSecondary mb-2">Password</label>
+                <input type="password" id="password" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-accent text-sm">
+            </div>
+            <button type="submit" class="w-full py-3 bg-accent text-white font-medium rounded-xl hover:bg-accentHover transition-all shadow-md">Sign In</button>
+        </form>
+        <p id="error-msg" class="text-xs text-accent mt-4 text-center hidden"></p>
+    </div>
+
+    <script>
+        const SUPABASE_URL = 'https://wwawzrwxxsjdqbsqvagw.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_JA5a5hh28iloEh3x4v8okg_mCgkR91m';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorEl = document.getElementById('error-msg');
+
+            const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+            if (error) {
+                errorEl.innerText = error.message;
+                errorEl.classList.remove('hidden');
+            } else {
+                window.location.href = 'admin.html';
+            }
+        });
+    </script>
+</body>
+</html>

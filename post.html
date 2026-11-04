@@ -142,62 +142,58 @@
         </article>
     </main>
 
-    <script>
-  const urlParams = new URLSearchParams(window.location.search);
-  const postId = urlParams.get('id');
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  if (postId) {
-    const PROJECT_ID = 'rulqr25z';
-    const DATASET = 'production';
-    
-    // Query Sanity for the specific post using its ID
-    const query = encodeURIComponent(`*[_id == "${postId}"][0]`);
-    const url = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${query}`;
+  async function loadSinglePost() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get('id');
 
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        const post = data.result;
+      if (!postId) {
+          document.getElementById('post-title').innerText = "No post specified";
+          return;
+      }
 
-        if (post) {
-          // Format the date
+      const { data: post, error } = await supabase.from('posts').select('*').eq('id', postId).single();
+
+      if (post) {
           const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
-          const formattedDate = post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', dateOptions) : 'Recent';
+          const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US', dateOptions) : 'Recent';
 
-          // Inject title and date
           document.getElementById('post-title').innerText = post.title;
           document.getElementById('post-date').innerText = formattedDate;
           document.title = post.title + " | Derrick Blebo";
           
-          // Sanity stores rich text in an array of blocks. This converts it into standard HTML paragraphs.
           let htmlContent = '';
-          if (post.body && Array.isArray(post.body)) {
-             post.body.forEach(block => {
-                if (block._type === 'block' && block.children) {
-                   // Extract text from the block
-                   const text = block.children.map(child => child.text).join('');
-                   if (text.trim() !== '') {
-                       // Add margin-bottom (mb-6) to space out paragraphs nicely
-                       htmlContent += `<p class="mb-6 text-justify">${text}</p>`;
-                   }
-                }
-             });
-          }
-          document.getElementById('post-content').innerHTML = htmlContent || "No content available.";
           
-        } else {
+          if (post.image_url) {
+              htmlContent += `
+                  <div class="mb-10 overflow-hidden rounded-2xl shadow-lg border border-gray-100">
+                      <img src="${post.image_url}" alt="${post.title}" class="w-full h-auto object-cover max-h-[450px]">
+                  </div>
+              `;
+          }
+
+          if (post.body) {
+              const paragraphs = post.body.split('\n\n');
+              paragraphs.forEach(paragraph => {
+                  if (paragraph.trim() !== '') {
+                      htmlContent += `<p class="mb-6 text-justify">${paragraph.trim()}</p>`;
+                  }
+              });
+          }
+          
+          document.getElementById('post-content').innerHTML = htmlContent || "No content available.";
+      } else {
           document.getElementById('post-title').innerText = "Post not found";
           document.getElementById('post-content').innerHTML = "Sorry, the post you are looking for does not exist.";
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching post:', error);
-        document.getElementById('post-title').innerText = "Error loading post";
-      });
-  } else {
-    document.getElementById('post-title').innerText = "No post specified";
-  }
-</script>
+      }
+    }
+    loadSinglePost();
+    </script>
     <footer id="contact" class="bg-textPrimary text-white pt-20 pb-8 relative overflow-hidden">
         <!-- Abstract background shape -->
         <div class="absolute top-0 right-0 w-96 h-96 bg-accent opacity-20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
