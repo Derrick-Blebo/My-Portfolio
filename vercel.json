@@ -1,34 +1,14 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/login",
+      "src": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "admin.derrickblebo.com"
         }
       ],
-      "destination": "/login.html"
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "admin.derrickblebo.com"
-        }
-      ],
-      "destination": "/admin.html"
-    },
-    {
-      "source": "/admin",
-      "has": [
-        {
-          "type": "host",
-          "value": "admin.derrickblebo.com"
-        }
-      ],
-      "destination": "/admin.html"
+      "destination": "/admin/$1"
     }
   ]
 }
