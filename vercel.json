@@ -11,16 +11,6 @@
       "destination": "/login.html"
     },
     {
-      "source": "/login.html",
-      "has": [
-        {
-          "type": "host",
-          "value": "admin.derrickblebo.com"
-        }
-      ],
-      "destination": "/login.html"
-    },
-    {
       "source": "/",
       "has": [
         {
@@ -31,7 +21,7 @@
       "destination": "/admin.html"
     },
     {
-      "source": "/(.*)",
+      "source": "/admin",
       "has": [
         {
           "type": "host",
