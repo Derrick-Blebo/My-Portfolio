@@ -1,24 +1,45 @@
 {
-  "routes": [
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
     {
-      "src": "/login",
-      "headers": { "host": "admin.derrickblebo.com" },
-      "dest": "/login.html"
+      "source": "/login",
+      "has": [
+        {
+          "type": "host",
+          "value": "admin.derrickblebo.com"
+        }
+      ],
+      "destination": "/login.html"
     },
     {
-      "src": "/login.html",
-      "headers": { "host": "admin.derrickblebo.com" },
-      "dest": "/login.html"
+      "source": "/login.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "admin.derrickblebo.com"
+        }
+      ],
+      "destination": "/login.html"
     },
     {
-      "src": "/",
-      "headers": { "host": "admin.derrickblebo.com" },
-      "dest": "/admin.html"
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "admin.derrickblebo.com"
+        }
+      ],
+      "destination": "/admin.html"
     },
     {
-      "src": "/(.*)",
-      "headers": { "host": "admin.derrickblebo.com" },
-      "dest": "/admin.html"
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "admin.derrickblebo.com"
+        }
+      ],
+      "destination": "/admin.html"
     }
   ]
 }
