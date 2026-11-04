@@ -16,7 +16,7 @@
                 extend: {
                     fontFamily: { sans: ['Montserrat', 'sans-serif'] },
                     colors: {
-                        bgPrimary: '#f8fafc',
+                        bgPrimary: '#fcfbfa', // Slightly warmer luxury off-white
                         bgSecondary: '#ffffff',
                         textPrimary: '#0f172a',
                         textSecondary: '#475569',
@@ -29,7 +29,7 @@
     </script>
     <style>
         body { background-color: theme('colors.bgPrimary'); color: theme('colors.textPrimary'); }
-        .glass-nav { background: rgba(248, 250, 252, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .glass-nav { background: rgba(252, 251, 250, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
         .minimal-input {
             border: none;
             border-bottom: 1px solid #cbd5e1;
@@ -42,9 +42,23 @@
             outline: none;
             border-bottom-color: #b91c1c;
         }
+        /* Elegant subtle background red glow */
+        .red-glow {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(185, 28, 28, 0.04) 0%, rgba(255, 255, 255, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden selection:bg-accent selection:text-white">
+<body class="antialiased overflow-x-hidden selection:bg-accent selection:text-white relative">
+
+    <!-- Subtle Red Glow Background Accent -->
+    <div class="red-glow"></div>
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
@@ -69,13 +83,20 @@
     </nav>
 
     <!-- Contact Layout Section -->
-    <main class="pt-36 pb-24 max-w-7xl mx-auto px-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+    <main class="pt-40 pb-24 max-w-7xl mx-auto px-6 relative z-10">
+        
+        <!-- Header Text -->
+        <div class="mb-16 max-w-2xl">
+            <h1 class="text-4xl md:text-5xl font-thin mb-4 tracking-tight text-textPrimary">Let's build something <span class="font-bold text-accent">exceptional.</span></h1>
+            <p class="text-textSecondary font-light text-base">Fill out the details below to initiate a brand strategy session or engagement.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start bg-white/60 p-8 md:p-12 rounded-3xl border border-gray-100 shadow-sm backdrop-blur-md">
             
             <!-- Left Side: Form -->
             <div class="lg:col-span-7">
-                <form id="contact-form" action="https://formspree.io/f/moeeylyg" method="POST" class="space-y-10">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <form id="contact-form" action="https://formspree.io/f/moeeylyg" method="POST" class="space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
                             <label class="block text-[11px] font-bold uppercase tracking-widest text-textSecondary mb-2">Your Name *</label>
                             <input type="text" name="name" required class="w-full minimal-input text-sm text-textPrimary">
@@ -86,7 +107,7 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
                             <label class="block text-[11px] font-bold uppercase tracking-widest text-textSecondary mb-2">Company or Brand</label>
                             <input type="text" name="company" class="w-full minimal-input text-sm text-textPrimary">
@@ -115,9 +136,9 @@
             </div>
 
             <!-- Right Side: What happens next & Direct Info -->
-            <div class="lg:col-span-5 space-y-12 lg:pl-10 lg:border-l border-gray-200">
+            <div class="lg:col-span-5 space-y-10 lg:pl-10 lg:border-l border-gray-100">
                 <div>
-                    <h3 class="text-2xl font-bold text-textPrimary mb-6 tracking-tight">What happens next</h3>
+                    <h3 class="text-xl font-bold text-textPrimary mb-4 tracking-tight">What happens next</h3>
                     <ol class="space-y-4 text-sm text-textSecondary font-light">
                         <li class="flex items-start"><span class="font-bold text-accent mr-3">1</span> I reply within 24 business hours.</li>
                         <li class="flex items-start"><span class="font-bold text-accent mr-3">2</span> We hold a 45-minute discovery call on the brand, the market, and the goal.</li>
@@ -125,15 +146,15 @@
                     </ol>
                 </div>
 
-                <div class="space-y-4 pt-6 border-t border-gray-200">
+                <div class="space-y-4 pt-6 border-t border-gray-100">
                     <h4 class="text-[11px] font-bold uppercase tracking-widest text-textSecondary">Direct</h4>
-                    <p class="text-sm font-medium text-textPrimary"><a href="mailto:derrickblebo@gmail.com" class="hover:text-accent">derrickblebo@gmail.com</a></p>
+                    <p class="text-sm font-medium text-textPrimary"><a href="mailto:derrickblebo@gmail.com" class="hover:text-accent transition-colors">derrickblebo@gmail.com</a></p>
                     <p class="text-sm font-medium text-textPrimary">+233 55 128 2588</p>
                     <p class="text-xs text-textSecondary font-light">Accra, Ghana. Working across West Africa.</p>
                     
                     <div class="flex space-x-4 pt-2">
-                        <a href="https://www.linkedin.com/in/derrick-blebo-2b0640134/" target="_blank" rel="noopener noreferrer" class="text-textSecondary hover:text-accent transition-colors">LinkedIn</a>
-                        <a href="https://wa.me/+233551282588" target="_blank" rel="noopener noreferrer" class="text-textSecondary hover:text-accent transition-colors">WhatsApp</a>
+                        <a href="https://www.linkedin.com/in/derrick-blebo-2b0640134/" target="_blank" rel="noopener noreferrer" class="text-textSecondary hover:text-accent transition-colors text-xs font-bold uppercase tracking-wider">LinkedIn</a>
+                        <a href="https://wa.me/+233551282588" target="_blank" rel="noopener noreferrer" class="text-textSecondary hover:text-accent transition-colors text-xs font-bold uppercase tracking-wider">WhatsApp</a>
                     </div>
                 </div>
             </div>
